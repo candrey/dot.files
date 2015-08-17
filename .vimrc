@@ -33,6 +33,8 @@ Plugin 'davidhalter/jedi-vim' 		" Jedi-vim autocomplete plugin
 Plugin 'mitsuhiko/vim-jinja'		" Jinja support for vim
 Plugin 'mitsuhiko/vim-python-combined'  " Combined Python 2/3 for Vim
 
+Plugin 'gmoe/vim-espresso'
+
 call vundle#end()            		" required
 filetype on
 filetype plugin on
@@ -78,7 +80,7 @@ else
 " терминал?
   set t_Co=256
   set background=dark
-  colorscheme solarized
+  colorscheme espresso
 endif
 
 tab sball
