@@ -1,0 +1,23 @@
+name: Continuous Integration and Deployment
+
+on:
+  push:
+    branches: [ test ]
+  pull_request:
+    branches: [ test ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Configure ssh connection
+          shell: bash
+          env:
+            SSH_PK: ${{ secrets.SSH_PRIVATE_KEY }}
+            MY_NAME: ${{ secrets.TEST_NAME }}
+          run: |
+            eval "$(ssh-agent -s)"
+            echo "123 ${{ secrets.TEST_NAME }}" > key
+            cat key
+            echo "$MY_NAME"
+
