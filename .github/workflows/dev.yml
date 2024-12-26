@@ -14,12 +14,12 @@ jobs:
           shell: bash
           env:
             SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+            SSH_KNOWN_HOST: ${{ secrets.SSH_KNOWN_HOSTS }}
             DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
             DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           run: |
-            echo "$#SSH_KNOWN_HOSTS"
-            echo "$#SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+            echo "$SSH_KNOWN_HOST"
+            echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
             mkdir -p ~/.ssh
             chmod 700 ~/.ssh
             echo "${#SSH_KNOWN_HOSTS}" >> ~/.ssh/known_hosts
