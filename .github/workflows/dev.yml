@@ -18,6 +18,7 @@ jobs:
             DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
             DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           run: |
+            echo "$SSH_KNOWN_HOSTS"
             echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
             mkdir -p ~/.ssh
             chmod 700 ~/.ssh
