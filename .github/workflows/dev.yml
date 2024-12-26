@@ -21,7 +21,8 @@ jobs:
             mkdir -p ~/.ssh
             chmod 700 ~/.ssh
             ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
-            echo "MY_HOSTS: ${SSH_PRI}"
+            echo "MY_HOSTS: $SSH_PRIVATE_KEY"
+            eval $(ssh-agent -s)
             echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
 
 #            echo "${#SSH_KNOWN_HOSTS}" >> ~/.ssh/known_hosts
