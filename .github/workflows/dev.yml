@@ -18,10 +18,12 @@ jobs:
             DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
             DEPLOY_HOST: ${{ vars.DEPLOY_HOST }}
           run: |
-            echo "MY_HOSTS: ${#SSH_KNOWN_HOST}"
-#            echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-#            mkdir -p ~/.ssh
-#            chmod 700 ~/.ssh
+            mkdir -p ~/.ssh
+            chmod 700 ~/.ssh
+            ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+            echo "MY_HOSTS: ${SSH_PRI}"
+            echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
 #            echo "${#SSH_KNOWN_HOSTS}" >> ~/.ssh/known_hosts
 #            chmod 644 ~/.ssh/known_hosts
 #            ssh ${DEV_USER}@${DEV_HOST} ls
