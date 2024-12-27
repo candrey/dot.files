@@ -27,4 +27,5 @@ jobs:
             echo "$DEPLOY_USER@$DEPLOY_HOST"
             echo "export PM2_CMD=$PM2_CMD" > env.remote
             scp env.remote $DEPLOY_USER@$DEPLOY_HOST:/tmp
+            ssh $DEPLOY_USER@$DEPLOY_HOST 'cd /home/deploy/tst/dot.files; git pull'
             ssh $DEPLOY_USER@$DEPLOY_HOST 'source /tmp/env.remote; $PM2_CMD status'
