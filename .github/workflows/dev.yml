@@ -25,5 +25,7 @@ jobs:
             eval $(ssh-agent -s)
             echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
             echo "$DEPLOY_USER@$DEPLOY_HOST"
-            ssh $DEPLOY_USER@$DEPLOY_HOST 'export PATH=${PM2_CMD}:$PATH; echo $PATH'
+            echo "export PM2_CMD=$PM2_CMD" > env.remote
+            scp env.remote $DEPLOY_USER@$DEPLOY_HOST:/tmp
+            ssh $DEPLOY_USER@$DEPLOY_HOST 'source /tmp/env.remote; echo $PM2_CMD'
             # ssh ${DEPLOY_USER}@${DEPLOY_HOST} $(/usr/bin/which pm2) status
