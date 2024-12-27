@@ -23,9 +23,7 @@ jobs:
             ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
             eval $(ssh-agent -s)
             echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-            ssh ${DEPLOY_USER}@${DEPLOY_HOST} ls -lah
-#            echo "${#SSH_KNOWN_HOSTS}" >> ~/.ssh/known_hosts
-#            chmod 644 ~/.ssh/known_hosts
-#            ssh ${DEV_USER}@${DEV_HOST} ls
-
-
+        - name: Restart project
+          shell: bash
+          run: |
+            ssh ${DEPLOY_USER}@${DEPLOY_HOST} sudo pm2 status
