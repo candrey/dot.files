@@ -23,5 +23,5 @@ jobs:
             ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
             eval $(ssh-agent -s)
             echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-            ssh ${DEPLOY_USER}@${DEPLOY_HOST} source $HOME/.bashrc && echo $(/usr/bin/which pm2)
+            ssh ${DEPLOY_USER}@${DEPLOY_HOST} "source $HOME/.bashrc && echo $(/usr/bin/which pm2)"
             # ssh ${DEPLOY_USER}@${DEPLOY_HOST} $(/usr/bin/which pm2) status
