@@ -24,5 +24,5 @@ jobs:
             eval $(ssh-agent -s)
             echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
             echo "$DEPLOY_USER@$DEPLOY_HOST"
-            ssh $DEPLOY_USER@$DEPLOY_HOST echo $PATH
+            ssh $DEPLOY_USER@$DEPLOY_HOST 'echo $PATH'
             # ssh ${DEPLOY_USER}@${DEPLOY_HOST} $(/usr/bin/which pm2) status
