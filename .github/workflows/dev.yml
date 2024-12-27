@@ -27,5 +27,4 @@ jobs:
             echo "$DEPLOY_USER@$DEPLOY_HOST"
             echo "export PM2_CMD=$PM2_CMD" > env.remote
             scp env.remote $DEPLOY_USER@$DEPLOY_HOST:/tmp
-            ssh $DEPLOY_USER@$DEPLOY_HOST 'source /tmp/env.remote; echo $PM2_CMD'
-            # ssh ${DEPLOY_USER}@${DEPLOY_HOST} $(/usr/bin/which pm2) status
+            ssh $DEPLOY_USER@$DEPLOY_HOST 'source /tmp/env.remote; $PM2_CMD status'
